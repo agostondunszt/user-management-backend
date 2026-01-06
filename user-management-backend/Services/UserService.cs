@@ -26,7 +26,7 @@ public class UserService : IUserService
 
     public async Task<User> CreateAsync(User user)
     {
-        await _userRepository.CreateAsync(user);
-        return user;
+        var createdUser = await _userRepository.CreateAsync(user);
+        return createdUser;
     }
 }
