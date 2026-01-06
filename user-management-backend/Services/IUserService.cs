@@ -9,5 +9,5 @@ public interface IUserService
     Task<IEnumerable<User>> GetAllAsync(string? name);
     Task<User> CreateAsync(User user);
     Task<User?> UpdateAsync(UserUpdateDto userUpdateDto, int id);
-    Task DeleteAsync(int id);
+    Task<bool> DeleteAsync(int id);
 }

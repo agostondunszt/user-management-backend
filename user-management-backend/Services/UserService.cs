@@ -45,8 +45,8 @@ public class UserService : IUserService
         return userToUpdate;
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<bool> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        return await _userRepository.DeleteAsync(id);
     }
 }
