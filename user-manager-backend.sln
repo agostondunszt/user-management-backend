@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "user-management-backend", "user-management-backend\user-management-backend.csproj", "{500A1BA4-F136-4048-AAB4-C43893C5A2CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "user-manager-backend", "user-manager-backend\user-manager-backend.csproj", "{500A1BA4-F136-4048-AAB4-C43893C5A2CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
