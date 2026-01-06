@@ -1,4 +1,4 @@
-# User Management Backend
+# User Manager Backend
 .NET 8.0 használatával írt, Attrecto Zrt. számára elkészített gyakornoki feladat
 
 ## Futtatás
