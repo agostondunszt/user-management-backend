@@ -1,0 +1,12 @@
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+*.user
+*.suo
+/packages/
+.idea/
+*.iml
+riderModule.iml
+/_ReSharper.Caches/
