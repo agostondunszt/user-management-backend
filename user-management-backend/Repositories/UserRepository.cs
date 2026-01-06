@@ -19,9 +19,12 @@ public class UserRepository : IUserRepository
         return user;
     }
 
-    public async Task<IEnumerable<User>> GetAllAsync()
+    public async Task<IEnumerable<User>> GetAllAsync(string? name = null)
     {
-        var users = await _context.Users.ToListAsync();
-        return users;
+        var usersQuery = _context.Users.AsQueryable();
+        if (!string.IsNullOrWhiteSpace(name))
+            usersQuery = usersQuery.Where(u => u.Name.ToLower().Contains(name.ToLower()));
+        
+        return await usersQuery.ToListAsync();
     }
 }

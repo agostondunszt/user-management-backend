@@ -21,14 +21,13 @@ public class UserController : ControllerBase
         var user = await _userService.GetByIdAsync(id);
         if (user != null)
             return Ok(user);
-        
         return NotFound();
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllAsync()
+    public async Task<IActionResult> GetAllAsync([FromQuery] string? name)
     {
-        var users = await _userService.GetAllAsync();
+        var users = await _userService.GetAllAsync(name);
         return Ok(users);
     }
 }
