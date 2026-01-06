@@ -23,4 +23,10 @@ public class UserService : IUserService
         var users = await _userRepository.GetAllAsync(name);
         return users;
     }
+
+    public async Task<User> CreateAsync(User user)
+    {
+        await _userRepository.CreateAsync(user);
+        return user;
+    }
 }

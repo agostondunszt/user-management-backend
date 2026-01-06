@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using user_management_backend.Models;
+using user_management_backend.Models.DTOs;
 using user_management_backend.Services;
 
 namespace user_management_backend.Controllers;
@@ -16,7 +17,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetByIdAsync(int id)
+    public async Task<IActionResult> GetById(int id)
     {
         var user = await _userService.GetByIdAsync(id);
         if (user != null)
@@ -25,9 +26,23 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllAsync([FromQuery] string? name)
+    public async Task<IActionResult> GetAll([FromQuery] string? name)
     {
         var users = await _userService.GetAllAsync(name);
         return Ok(users);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] UserCreateDto userCreateDto)
+    {
+        var newUser = new User
+        {
+            Name = userCreateDto.Name,
+            Age = userCreateDto.Age,
+            Gender = userCreateDto.Gender
+        };
+        
+        var createdUser = await _userService.CreateAsync(newUser);
+        return CreatedAtAction(nameof(GetById), new { id = createdUser.Id }, createdUser);
     }
 }

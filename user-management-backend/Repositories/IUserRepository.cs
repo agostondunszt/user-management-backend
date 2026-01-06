@@ -6,4 +6,5 @@ public interface IUserRepository
 {
     Task<User?> GetByIdAsync(int id);
     Task<IEnumerable<User>> GetAllAsync(string? name = null);
+    Task<User> CreateAsync(User user);
 }
