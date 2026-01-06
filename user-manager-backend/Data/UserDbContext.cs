@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using user_management_backend.Models;
+using user_manager_backend.Models;
 
-namespace user_management_backend.Data;
+namespace user_manager_backend.Data;
 
 public class UserDbContext : DbContext
 {

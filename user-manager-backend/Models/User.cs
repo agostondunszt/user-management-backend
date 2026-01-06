@@ -1,4 +1,4 @@
-﻿namespace user_management_backend.Models;
+﻿namespace user_manager_backend.Models;
 
 public class User
 {

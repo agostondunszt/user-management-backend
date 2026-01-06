@@ -1,7 +1,7 @@
-﻿using user_management_backend.Models;
-using user_management_backend.Models.DTOs;
+﻿using user_manager_backend.Models;
+using user_manager_backend.Models.DTOs;
 
-namespace user_management_backend.Services;
+namespace user_manager_backend.Services;
 
 public interface IUserService
 {

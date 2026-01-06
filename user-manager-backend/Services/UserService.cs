@@ -1,8 +1,8 @@
-﻿using user_management_backend.Models;
-using user_management_backend.Models.DTOs;
-using user_management_backend.Repositories;
+﻿using user_manager_backend.Models;
+using user_manager_backend.Models.DTOs;
+using user_manager_backend.Repositories;
 
-namespace user_management_backend.Services;
+namespace user_manager_backend.Services;
 
 public class UserService : IUserService
 {

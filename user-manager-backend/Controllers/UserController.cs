@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using user_management_backend.Models;
-using user_management_backend.Models.DTOs;
-using user_management_backend.Services;
+using user_manager_backend.Models;
+using user_manager_backend.Models.DTOs;
+using user_manager_backend.Services;
 
-namespace user_management_backend.Controllers;
+namespace user_manager_backend.Controllers;
 
 [ApiController]
 [Route("api/users")]
@@ -15,7 +15,12 @@ public class UserController : ControllerBase
     {
         _userService = userService;
     }
-
+    
+    /// <summary>
+    /// User lekérdezése ID alapján.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpGet("{id:int}")]
     [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -29,14 +34,24 @@ public class UserController : ControllerBase
         return NotFound();
     }
 
+    /// <summary>
+    /// Összes user lekérdezése (név alapján szűrve).
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     [HttpGet]
-    [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<User>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll([FromQuery] string? name)
     {
         var users = await _userService.GetAllAsync(name);
         return Ok(users);
     }
 
+    /// <summary>
+    /// User hozzáadása.
+    /// </summary>
+    /// <param name="userCreateDto"></param>
+    /// <returns></returns>
     [HttpPost]
     [ProducesResponseType(typeof(User), StatusCodes.Status201Created)]
     public async Task<IActionResult> Create([FromBody] UserCreateDto userCreateDto)
@@ -52,6 +67,12 @@ public class UserController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = createdUser.Id }, createdUser);
     }
 
+    /// <summary>
+    /// User adatainak frissítése.
+    /// </summary>
+    /// <param name="userUpdateDto"></param>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpPut("{id:int}")]
     [ProducesResponseType(typeof(User), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -64,7 +85,12 @@ public class UserController : ControllerBase
 
         return Ok(updatedUser);
     }
-
+    
+    /// <summary>
+    /// User törlése.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     [HttpDelete("{id:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

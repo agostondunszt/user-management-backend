@@ -1,7 +1,8 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using user_management_backend.Data;
-using user_management_backend.Repositories;
-using user_management_backend.Services;
+using user_manager_backend.Data;
+using user_manager_backend.Repositories;
+using user_manager_backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,11 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+});
 
 
 var app = builder.Build();

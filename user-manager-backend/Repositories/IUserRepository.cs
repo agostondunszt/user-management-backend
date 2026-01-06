@@ -1,6 +1,6 @@
-﻿using user_management_backend.Models;
+﻿using user_manager_backend.Models;
 
-namespace user_management_backend.Repositories;
+namespace user_manager_backend.Repositories;
 
 public interface IUserRepository
 {
