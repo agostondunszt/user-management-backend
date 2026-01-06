@@ -7,12 +7,12 @@ namespace user_management_backend.Services;
 public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
-    
+
     public UserService(IUserRepository userRepository)
     {
         _userRepository = userRepository;
     }
-    
+
     public async Task<User?> GetByIdAsync(int id)
     {
         var user = await _userRepository.GetByIdAsync(id);
@@ -36,11 +36,11 @@ public class UserService : IUserService
         var userToUpdate = await _userRepository.GetByIdAsync(id);
         if (userToUpdate == null)
             return null;
-        
+
         userToUpdate.Name = userUpdateDto.Name;
         userToUpdate.Age = userUpdateDto.Age;
         userToUpdate.Gender = userUpdateDto.Gender;
-        
+
         await _userRepository.UpdateAsync(userToUpdate);
         return userToUpdate;
     }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using user_management_backend.Data;
 using user_management_backend.Models;
-using user_management_backend.Models.DTOs;
 
 namespace user_management_backend.Repositories;
 
@@ -13,7 +12,7 @@ public class UserRepository : IUserRepository
     {
         _context = context;
     }
-    
+
     public async Task<User?> GetByIdAsync(int id)
     {
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
@@ -25,7 +24,7 @@ public class UserRepository : IUserRepository
         var usersQuery = _context.Users.AsQueryable();
         if (!string.IsNullOrWhiteSpace(name))
             usersQuery = usersQuery.Where(u => u.Name.ToLower().Contains(name.ToLower()));
-        
+
         return await usersQuery.ToListAsync();
     }
 
@@ -47,7 +46,7 @@ public class UserRepository : IUserRepository
         var user = await _context.Users.FindAsync(id);
         if (user == null)
             return false;
-        
+
         _context.Users.Remove(user);
         await _context.SaveChangesAsync();
         return true;

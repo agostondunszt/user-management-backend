@@ -1,5 +1,4 @@
 ﻿using user_management_backend.Models;
-using user_management_backend.Models.DTOs;
 
 namespace user_management_backend.Repositories;
 
