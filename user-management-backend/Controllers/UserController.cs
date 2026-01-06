@@ -38,11 +38,22 @@ public class UserController : ControllerBase
         var newUser = new User
         {
             Name = userCreateDto.Name,
-            Age = userCreateDto.Age,
+            Age = userCreateDto.Age,    
             Gender = userCreateDto.Gender
         };
         
         var createdUser = await _userService.CreateAsync(newUser);
         return CreatedAtAction(nameof(GetById), new { id = createdUser.Id }, createdUser);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update([FromBody] UserUpdateDto userUpdateDto, int id)
+    {
+        var updatedUser = await _userService.UpdateAsync(userUpdateDto, id);
+        
+        if (updatedUser == null)
+            return NotFound();
+        
+        return Ok(updatedUser);
     }
 }

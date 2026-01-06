@@ -1,4 +1,5 @@
 ﻿using user_management_backend.Models;
+using user_management_backend.Models.DTOs;
 using user_management_backend.Repositories;
 
 namespace user_management_backend.Services;
@@ -28,5 +29,24 @@ public class UserService : IUserService
     {
         var createdUser = await _userRepository.CreateAsync(user);
         return createdUser;
+    }
+
+    public async Task<User?> UpdateAsync(UserUpdateDto userUpdateDto, int id)
+    {
+        var userToUpdate = await _userRepository.GetByIdAsync(id);
+        if (userToUpdate == null)
+            return null;
+        
+        userToUpdate.Name = userUpdateDto.Name;
+        userToUpdate.Age = userUpdateDto.Age;
+        userToUpdate.Gender = userUpdateDto.Gender;
+        
+        await _userRepository.UpdateAsync(userToUpdate);
+        return userToUpdate;
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        throw new NotImplementedException();
     }
 }

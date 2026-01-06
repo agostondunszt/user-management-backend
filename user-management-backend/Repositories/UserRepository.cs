@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using user_management_backend.Data;
 using user_management_backend.Models;
+using user_management_backend.Models.DTOs;
 
 namespace user_management_backend.Repositories;
 
@@ -33,5 +34,16 @@ public class UserRepository : IUserRepository
         await _context.Users.AddAsync(user);
         await _context.SaveChangesAsync();
         return user;
+    }
+
+    public async Task UpdateAsync(User user)
+    {
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        throw new NotImplementedException();
     }
 }
